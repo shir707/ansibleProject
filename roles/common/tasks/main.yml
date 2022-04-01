@@ -1,0 +1,42 @@
+---
+ 
+   - name: Update apt repo and cache on all Debian/Ubuntu boxes
+     apt:
+      update_cache: yes
+      force_apt_get: yes
+      cache_valid_time: 3600
+
+   - name: Clone a github repository of the Web Tracker App
+     git:
+       repo: https://github.com/shir707/bootcamp-app.git
+       dest: /home/azureuser/bootcamp-app/
+       clone: yes
+       update: yes
+       
+   - name: add nodejs apt key
+     apt_key:
+       url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+       state: present
+   - name: add nodejs 14.x repository
+     apt_repository:
+       repo: deb https://deb.nodesource.com/node_14.x {{ ansible_lsb.codename }} main
+       state: present
+       update_cache: yes
+   - name: install nodejs 14.x
+     apt:
+       name: nodejs
+       state: present   
+
+    - name: install app dependencies and pm2 package
+     shell:
+       cmd: sudo npm install pm2 -g && sudo npm install
+       chdir: /home/azureuser/bootcamp-app
+       executable: /bin/bash
+
+    - name: create env file
+     template:
+       src: templates/env.j2
+       dest: /home/azureuser/bootcamp-app/.env
+
+
+    

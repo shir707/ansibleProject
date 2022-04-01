@@ -1,0 +1,6 @@
+---
+- hosts: "{{ server_env_group }}"
+  become: true
+  roles:
+    - role: common
+
