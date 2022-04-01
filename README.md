@@ -1,7 +1,7 @@
 # ansibleProject
 
 commands:
-ansible-playbook -v -i inventories/stage --extra-vars server_env_group="stageServers" main.yml
+ansible-playbook -v -i inventories/stage --extra-vars server_env_group="stageServers" main.yml<br/>
 
 
 Structure:
