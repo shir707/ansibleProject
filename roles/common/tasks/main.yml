@@ -17,26 +17,49 @@
      apt_key:
        url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
        state: present
+
    - name: add nodejs 14.x repository
      apt_repository:
        repo: deb https://deb.nodesource.com/node_14.x {{ ansible_lsb.codename }} main
        state: present
        update_cache: yes
+
    - name: install nodejs 14.x
      apt:
        name: nodejs
        state: present   
 
-    - name: install app dependencies and pm2 package
+   - name: install app dependencies and pm2 package
      shell:
        cmd: sudo npm install pm2 -g && sudo npm install
        chdir: /home/azureuser/bootcamp-app
        executable: /bin/bash
 
-    - name: create env file
+   - name: create env file from template
      template:
        src: templates/env.j2
        dest: /home/azureuser/bootcamp-app/.env
 
+   - name: initialize the database with npm command
+     shell:
+       cmd: npm run initdb
+       chdir: /home/azureuser/bootcamp-app
+     run_once: true
 
-    
+   - name: starting the weight app by pm2
+     shell:
+       cmd: pm2 start npm -- run dev
+       chdir: /home/azureuser/bootcamp-app
+       executable: /bin/bash
+
+   - name: saving the state of pm2
+     shell:
+       cmd: pm2 save
+       chdir: /home/azureuser/bootcamp-app
+       executable: /bin/bash
+
+   - name: the state of pm2
+     shell:
+       cmd: pm2 startup
+       chdir: /home/azureuser/bootcamp-app
+       executable: /bin/bash
