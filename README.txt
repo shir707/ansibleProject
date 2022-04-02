@@ -10,6 +10,13 @@ ansible-playbook -v -i inventories/stage --extra-vars server_env_group="stageSer
 in order to run prod enviorment run:
 ansible-playbook -v -i inventories/prod --extra-vars server_env_group="prodServers" main.yml
 
+checking:
+In the web browser(prod env): 
+http://52.149.172.80:8080/list
+
+In the web browser(stage env):
+http://20.37.134.76:8080/list
+
 Structure:
 
 .
