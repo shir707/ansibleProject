@@ -2,7 +2,9 @@
 This project deploy the bootcamp app by ansible.
 The link for the github app: https://github.com/shir707/bootcamp-app.git
 
-commands:
+setup:
+* Add the file "prodServers.yml" into the path "/inventories/prod/group_vars/prodServers.yml"
+* Add the file "stageServers.yml" into the path "/inventories/stage/group_vars/stageServers.yml"
 
 in order to run stage enviorment run:
 ansible-playbook -v -i inventories/stage --extra-vars server_env_group="stageServers" main.yml
