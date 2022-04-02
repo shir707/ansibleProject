@@ -44,7 +44,7 @@
      become: yes
      command: "npm install --save-dev nodemon@2"
      args:
-        chdir: /home/adminuser/bootcamp-app
+        chdir: /home/azureuser/bootcamp-app
 
    - name: initialize the database with npm command
      shell:
@@ -55,7 +55,7 @@
    - name: run web app
      command: 'pm2 start "npm run dev" --name weight_tracker_app'
      args:
-         chdir: /home/adminuser/bootcamp-app
+         chdir: /home/azureuser/bootcamp-app
 
    - name: saving the state of pm2
      shell:
