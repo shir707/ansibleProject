@@ -40,17 +40,22 @@
        src: templates/env.j2
        dest: /home/azureuser/bootcamp-app/.env
 
+   - name: install nodemon
+     become: yes
+     command: "npm install --save-dev nodemon@2"
+     args:
+        chdir: /home/adminuser/bootcamp-app
+
    - name: initialize the database with npm command
      shell:
        cmd: npm run initdb
        chdir: /home/azureuser/bootcamp-app
      run_once: true
 
-   - name: starting the weight app by pm2
-     shell:
-       cmd: pm2 start npm -- run dev
-       chdir: /home/azureuser/bootcamp-app
-       executable: /bin/bash
+   - name: run web app
+     command: 'pm2 start "npm run dev" --name weight_tracker_app'
+     args:
+         chdir: /home/adminuser/bootcamp-app
 
    - name: saving the state of pm2
      shell:
@@ -58,8 +63,9 @@
        chdir: /home/azureuser/bootcamp-app
        executable: /bin/bash
 
-   - name: the state of pm2
+   - name: startup the state of pm2
      shell:
        cmd: pm2 startup
        chdir: /home/azureuser/bootcamp-app
        executable: /bin/bash
+
