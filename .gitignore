@@ -1,0 +1,2 @@
+/inventories/prod/group_vars/prodServers.yml
+/inventories/stage/group_vars/stageServers.yml
