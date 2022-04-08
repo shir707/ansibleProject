@@ -6,13 +6,11 @@
       force_apt_get: yes
       cache_valid_time: 3600
 
-   - name: Clone a github repository of the Web Tracker App
-     git:
-       repo: https://github.com/shir707/bootcamp-app.git
+   - name: Transfer file from agentServer to hosting servers
+     synchronize:
+       src: /home/azureuser/myagent/_work/1/a/app-artifact
        dest: /home/azureuser/bootcamp-app/
-       clone: yes
-       update: yes
-       
+ 
    - name: add nodejs apt key
      apt_key:
        url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
