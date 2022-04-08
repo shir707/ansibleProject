@@ -15,7 +15,6 @@
      unarchive:
        src: /home/azureuser/bootcamp.zip
        dest: /home/azureuser/bootcamp-app
-       remote_src: yes
  
    - name: add nodejs apt key
      apt_key:
