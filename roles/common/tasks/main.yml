@@ -14,7 +14,7 @@
    - name: Unarchive a file that is already on the remote machine
      unarchive:
        src: /home/azureuser/bootcamp.zip
-       dest: /home/azureuser/bootcamp-app
+       dest: /home/azureuser/bootcamp-app/
  
    - name: add nodejs apt key
      apt_key:
