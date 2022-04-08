@@ -14,7 +14,7 @@ ansible-playbook -v -i inventories/prod --extra-vars server_env_group="prodServe
 
 checking:
 In the web browser(prod env): 
-http://52.149.172.80:8080/list
+http://20.121.82.151:8080/list
 
 In the web browser(stage env):
 http://20.98.184.25:8080/list
