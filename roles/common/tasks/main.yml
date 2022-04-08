@@ -10,6 +10,12 @@
      synchronize:
        src: /home/azureuser/myagent/_work/1/a/app-artifact
        dest: /home/azureuser/bootcamp-app/
+
+   - name: Unarchive a file that is already on the remote machine
+     unarchive:
+       src: /home/azureuser/bootcamp-app/app-artifact/bootcamp.zip
+       dest: /home/azureuser/bootcamp-app
+       remote_src: yes
  
    - name: add nodejs apt key
      apt_key:
