@@ -6,13 +6,19 @@
       force_apt_get: yes
       cache_valid_time: 3600
 
+   - name: install unzip
+     shell:
+       cmd: sudo apt install unzip
+       chdir: /home/azureuser
+       executable: /bin/bash
+
    - name: Transfer file from agentServer to hosting servers
      synchronize:
        src: /home/azureuser/myagent/_work/1/a/app-artifact/bootcamp.zip
        dest: /home/azureuser/
 
    - name: Unarchive a file that is already on the remote machine
-     ansible.builtin.unarchive:
+     unarchive:
        src: /home/azureuser/bootcamp.zip
        dest: /home/azureuser/bootcamp-app
        remote_src: yes
