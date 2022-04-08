@@ -14,7 +14,7 @@
    - name: Unarchive a file that is already on the remote machine
      unarchive:
        src: /home/azureuser/bootcamp.zip
-       dest: /home/azureuser
+       dest: /home/azureuser/bootcamp-app
        remote_src: yes
  
    - name: add nodejs apt key
@@ -48,28 +48,28 @@
      become: yes
      command: "npm install --save-dev nodemon@2"
      args:
-        chdir: /home/azureuser/bootcamp-app
+        chdir: /home/azureuser/bootcamp-app/s
 
    - name: initialize the database with npm command
      shell:
        cmd: npm run initdb
-       chdir: /home/azureuser/bootcamp-app
+       chdir: /home/azureuser/bootcamp-app/s
      run_once: true
 
    - name: run web app
      command: 'pm2 start "npm run dev" --name weight_tracker_app'
      args:
-         chdir: /home/azureuser/bootcamp-app
+         chdir: /home/azureuser/bootcamp-app/s
 
    - name: saving the state of pm2
      shell:
        cmd: pm2 save
-       chdir: /home/azureuser/bootcamp-app
+       chdir: /home/azureuser/bootcamp-app/s
        executable: /bin/bash
 
    - name: startup the state of pm2
      shell:
        cmd: pm2 startup
-       chdir: /home/azureuser/bootcamp-app
+       chdir: /home/azureuser/bootcamp-app/s
        executable: /bin/bash
 
