@@ -8,7 +8,7 @@
 
    - name: Transfer file from agentServer to hosting servers
      synchronize:
-       src: /home/azureuser/myagent/_work/1/a/bootcamp-app/bootcamp.zip
+       src: /home/azureuser/myagent/_work/1/a/app-artifact/bootcamp.zip
        dest: /home/azureuser/
 
    - name: Unarchive a file that is already on the remote machine
