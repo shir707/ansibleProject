@@ -47,7 +47,7 @@
 
    - name: create env file from template
      template:
-       src: templates/env.j2
+       src: /home/azureuser/myagent/_work/1/s/ansibleProject/roles/common/templates
        dest: /home/azureuser/bootcamp-app/s/.env
 
    - name: install nodemon
