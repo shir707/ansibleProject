@@ -8,13 +8,13 @@
 
    - name: Transfer file from agentServer to hosting servers
      synchronize:
-       src: /home/azureuser/myagent/_work/1/a/bootcamp.zip
-       dest: /home/azureuser/bootcamp-app/
+       src: /home/azureuser/myagent/_work/1/a/bootcamp-app/bootcamp.zip
+       dest: /home/azureuser/
 
    - name: Unarchive a file that is already on the remote machine
      unarchive:
-       src: /home/azureuser/bootcamp-app/bootcamp.zip
-       dest: /home/azureuser/bootcamp-app
+       src: /home/azureuser/bootcamp.zip
+       dest: /home/azureuser
        remote_src: yes
  
    - name: add nodejs apt key
