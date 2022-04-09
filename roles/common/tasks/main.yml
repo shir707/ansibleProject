@@ -20,13 +20,13 @@
    - name: Unarchive a file that is already on the remote machine
      unarchive:
        src: /home/azureuser/bootcamp.zip
-       dest: /home/azureuser/bootcamp-app
+       dest: /home/azureuser/
        remote_src: yes
     
    - name: Transfer env file from agentServer to hosting servers
      synchronize:
        src: /home/azureuser/myagent/_work/1/a/.env
-       dest: /home/azureuser/bootcamp-app
+       dest: /home/azureuser/s
  
    - name: add nodejs apt key
      apt_key:
@@ -47,35 +47,35 @@
    - name: install pm2 package
      shell:
        cmd: sudo npm install pm2 -g 
-       chdir: /home/azureuser/bootcamp-app/s
+       chdir: /home/azureuser/s
        executable: /bin/bash
 
    - name: install nodemon
      become: yes
      command: "npm install --save-dev nodemon@2"
      args:
-        chdir: /home/azureuser/bootcamp-app/s
+        chdir: /home/azureuser/s
 
    - name: initialize the database with npm command
      shell:
        cmd: npm run initdb
-       chdir: /home/azureuser/bootcamp-app/s
+       chdir: /home/azureuser/s
      run_once: true
 
    - name: run web app
      command: 'pm2 start "npm run dev" --name weight_tracker_app'
      args:
-         chdir: /home/azureuser/bootcamp-app/s
+         chdir: /home/azureuser/s
 
    - name: saving the state of pm2
      shell:
        cmd: pm2 save
-       chdir: /home/azureuser/bootcamp-app/s
+       chdir: /home/azureuser/s
        executable: /bin/bash
 
    - name: startup the state of pm2
      shell:
        cmd: pm2 startup
-       chdir: /home/azureuser/bootcamp-app/s
+       chdir: /home/azureuser/s
        executable: /bin/bash
 
