@@ -47,23 +47,22 @@
 
    - name: install app dependencies and pm2 package
      shell:
-       cmd: sudo npm install pm2 -g && npm clean-install
+       cmd: sudo npm install pm2 -g && sudo npm clean-install
        chdir: /home/azureuser/s
-       executable: /bin/bash    
-   
-   - name: install nodemon
-     become: yes
-     command: "npm install --save-dev nodemon@2"
-     run_once: true
-     args:
-         chdir: /home/azureuser/s
-   
-   - name: init the database
-     command: 'npm run initdb'
-     run_once: true
-     args:
-         chdir: /home/azureuser/s
+       executable: /bin/bash   
 
+   - name: install nodemon
+     shell:
+       cmd: sudo npm install --save-dev nodemon@2
+       chdir: /home/azureuser/s
+       executable: /bin/bash  
+
+   - name: init the database
+     shell:
+       cmd: sudo npm run initdb
+       chdir: /home/azureuser/s
+     run_once: true 
+   
    - name: run web app
      command: 'pm2 start "npm run dev" --name weight_tracker_app'
      args:
