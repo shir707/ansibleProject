@@ -61,7 +61,7 @@
      command: 'sudo npm run initdb'
      run_once: true
      args:
-         chdir: /home/adminuser/bootcamp-app
+         chdir: /home/azureuser/s
    
    - name: run web app
      command: 'pm2 start "npm run dev" --name weight_tracker_app'
