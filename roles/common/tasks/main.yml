@@ -44,15 +44,10 @@
        name: nodejs
        state: present   
 
-   - name: delete node modules flder if exist
-     command: 'rm -rf node_modules'
-     run_once: true
-     args:
-         chdir: /home/azureuser/s
 
    - name: install app dependencies and pm2 package
      shell:
-       cmd: sudo npm install pm2 -g && sudo npm install
+       cmd: sudo npm install pm2 -g && npm clean-install
        chdir: /home/azureuser/s
        executable: /bin/bash    
    
