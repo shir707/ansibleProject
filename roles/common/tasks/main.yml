@@ -50,12 +50,6 @@
        chdir: /home/azureuser/s
        executable: /bin/bash
 
-   - name: install nodemon
-     become: yes
-     command: "npm install --save-dev nodemon@2"
-     args:
-        chdir: /home/azureuser/s
-
    - name: initialize the database with npm command
      shell:
        cmd: npm run initdb
