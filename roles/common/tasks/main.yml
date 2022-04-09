@@ -22,6 +22,11 @@
        src: /home/azureuser/bootcamp.zip
        dest: /home/azureuser/bootcamp-app
        remote_src: yes
+    
+   - name: Transfer env file from agentServer to hosting servers
+     synchronize:
+       src: /home/azureuser/myagent/_work/1/a/.env
+       dest: /home/azureuser/bootcamp-app
  
    - name: add nodejs apt key
      apt_key:
@@ -44,11 +49,6 @@
        cmd: sudo npm install pm2 -g 
        chdir: /home/azureuser/bootcamp-app/s
        executable: /bin/bash
-
-   - name: create env file from template
-     template:
-       src: /home/azureuser/myagent/_work/1/s/ansibleProject/roles/common/templates
-       dest: /home/azureuser/bootcamp-app/s/.env
 
    - name: install nodemon
      become: yes
