@@ -44,11 +44,24 @@
        name: nodejs
        state: present   
 
+   - name: delete node modules flder if exist
+     command: 'rm -rf node_modules'
+     run_once: true
+     args:
+         chdir: /home/azureuser/s
+
    - name: install app dependencies and pm2 package
      shell:
        cmd: sudo npm install pm2 -g && sudo npm install
        chdir: /home/azureuser/s
        executable: /bin/bash    
+   
+   - name: install nodemon
+     become: yes
+     command: "npm install --save-dev nodemon@2"
+     run_once: true
+     args:
+         chdir: /home/azureuser/s
    
    - name: init the database
      command: 'npm run initdb'
