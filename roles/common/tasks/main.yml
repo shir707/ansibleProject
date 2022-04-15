@@ -17,10 +17,21 @@
        repo: deb https://download.docker.com/linux/ubuntu bionic stable
        state: present
 
-   - name: Update apt and install docker-ce
-     apt: update_cache=yes name=docker-ce state=latest
+   - name: install docker
+     apt:
+       name: "{{item}}"
+       state: latest
+       update_cache: yes
+     loop:
+       - docker-ce
+       - docker-ce-cli
+       - containerd.io
 
-   - name: Install Docker Module for Python
-     pip:
+   - name: docker was started and enabled
+     service:
        name: docker
+       state: started
+       enabled: yes
+
+
 
