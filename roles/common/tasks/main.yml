@@ -58,8 +58,9 @@
      shell: docker run --restart always -d -p 0.0.0.0:8080:8080/tcp $(docker images -q)
 
    - name: npm run initdb
-     shell: docker exec $(sudo docker ps -aq) npm run initdb
-     run_once: true
+     shell:
+       cmd: docker exec $(docker ps -aq) npm run initdb
+     
 
  
 
