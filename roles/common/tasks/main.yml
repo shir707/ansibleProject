@@ -55,7 +55,8 @@
      shell: docker load -i /home/azureuser/bootcamp.zip
 
    - name: run Docker image
-     shell: docker run --restart always -d -p 0.0.0.0:8080:8080/tcp shirregistry.azurecr.io/bootcampdocker
+     shell: docker run --restart always -d -p 0.0.0.0:8080:8080/tcp $(docker images -q)
+
  
 
 
