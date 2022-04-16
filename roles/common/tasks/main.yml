@@ -45,11 +45,11 @@
        dest: /home/azureuser/
    
    - name: kill previous docker
-      shell: |
-        if  [ $( docker ps -aq | wc -w ) -gt 0 ]; then
-         docker rm -f $(docker ps -aq)
-         docker rmi $(docker images -q)
-        fi
+     shell: |
+       if  [ $( docker ps -aq | wc -w ) -gt 0 ]; then
+        docker rm -f $(docker ps -aq)
+        docker rmi $(docker images -q)
+       fi
 
    - name: load docker image from file
      shell: docker load -i /home/azureuser/bootcamp.zip
