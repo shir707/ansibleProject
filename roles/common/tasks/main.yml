@@ -33,10 +33,7 @@
        state: started
        enabled: yes
  
-   - name: Transfer env file from agentServer to hosting servers
-     synchronize:
-       src: /home/azureuser/myagent/_work/1/a/.env
-       dest: /home/azureuser
+
 
  
 
